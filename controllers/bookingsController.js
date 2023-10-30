@@ -1,18 +1,18 @@
 
-      // controllers/authController.js
-      const authService = require('../services/authService');
+      // controllers/bookingsController.js
+      const bookingsService = require('../services/bookingsService');
 
-      function authController(req, res) {
+      function bookingsController(req, res) {
         // Controller logic here
       }
   
       // Create
-      authController.create = async (req, res) => {
+      bookingsController.create = async (req, res) => {
         try {
             const data = req.body;
-            const auth = await authService.create(data);
-            if(auth){
-                res.status(200).send({status:true,message:"auth Created Successfully",data:auth,error:""});
+            const bookings = await bookingsService.create(data);
+            if(bookings){
+                res.status(200).send({status:true,message:"bookings Created Successfully",data:bookings,error:""});
             }
         } catch (error) {
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
@@ -20,7 +20,7 @@
       };
   
       // Read
-      authController.read = async (req, res) => {
+      bookingsController.read = async (req, res) => {
         try {
           const condition = req.body || {};
     const page = parseInt(req.query.page) || 1;
@@ -36,8 +36,8 @@
       query.$text = { $search: searchTerm };
     }
 
-          const data = await authService.find(query,page,limit);
-          const totalCount = await authService.countDocument(query);
+          const data = await bookingsService.find(query,page,limit);
+          const totalCount = await bookingsService.countDocument(query);
           res.status(200).send({
       data,
       page,
@@ -51,13 +51,13 @@
       };
   
       // Update
-      authController.update = async (req, res) => {
+      bookingsController.update = async (req, res) => {
         try {
           const id = req.params.id;
           const data = req.body;
-          const auth = await authService.update(id,data);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Updated Successfully",data:auth,error:""});
+          const bookings = await bookingsService.update(id,data);
+          if(bookings){
+            res.status(200).send({status:true,message:"bookings Updated Successfully",data:bookings,error:""});
           }
           
         } catch (error) {
@@ -66,12 +66,12 @@
       };
   
       // Delete
-      authController.delete = async (req, res) => {
+      bookingsController.delete = async (req, res) => {
         try {
           const id = req.params.id;
-          const auth = await authService.delete(id);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Deleted Successfully",data:[],error:""});
+          const bookings = await bookingsService.delete(id);
+          if(bookings){
+            res.status(200).send({status:true,message:"bookings Deleted Successfully",data:[],error:""});
           }
           
         } catch (error) {
@@ -79,5 +79,5 @@
         }
       };
   
-      module.exports = authController;
+      module.exports = bookingsController;
     

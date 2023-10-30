@@ -1,18 +1,18 @@
 
-      // controllers/authController.js
-      const authService = require('../services/authService');
+      // controllers/driverController.js
+      const driverService = require('../services/driverService');
 
-      function authController(req, res) {
+      function driverController(req, res) {
         // Controller logic here
       }
   
       // Create
-      authController.create = async (req, res) => {
+      driverController.create = async (req, res) => {
         try {
             const data = req.body;
-            const auth = await authService.create(data);
-            if(auth){
-                res.status(200).send({status:true,message:"auth Created Successfully",data:auth,error:""});
+            const driver = await driverService.create(data);
+            if(driver){
+                res.status(200).send({status:true,message:"driver Created Successfully",data:driver,error:""});
             }
         } catch (error) {
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
@@ -20,7 +20,7 @@
       };
   
       // Read
-      authController.read = async (req, res) => {
+      driverController.read = async (req, res) => {
         try {
           const condition = req.body || {};
     const page = parseInt(req.query.page) || 1;
@@ -36,8 +36,8 @@
       query.$text = { $search: searchTerm };
     }
 
-          const data = await authService.find(query,page,limit);
-          const totalCount = await authService.countDocument(query);
+          const data = await driverService.find(query,page,limit);
+          const totalCount = await driverService.countDocument(query);
           res.status(200).send({
       data,
       page,
@@ -51,13 +51,13 @@
       };
   
       // Update
-      authController.update = async (req, res) => {
+      driverController.update = async (req, res) => {
         try {
           const id = req.params.id;
           const data = req.body;
-          const auth = await authService.update(id,data);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Updated Successfully",data:auth,error:""});
+          const driver = await driverService.update(id,data);
+          if(driver){
+            res.status(200).send({status:true,message:"driver Updated Successfully",data:driver,error:""});
           }
           
         } catch (error) {
@@ -66,12 +66,12 @@
       };
   
       // Delete
-      authController.delete = async (req, res) => {
+      driverController.delete = async (req, res) => {
         try {
           const id = req.params.id;
-          const auth = await authService.delete(id);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Deleted Successfully",data:[],error:""});
+          const driver = await driverService.delete(id);
+          if(driver){
+            res.status(200).send({status:true,message:"driver Deleted Successfully",data:[],error:""});
           }
           
         } catch (error) {
@@ -79,5 +79,5 @@
         }
       };
   
-      module.exports = authController;
+      module.exports = driverController;
     

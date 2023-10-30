@@ -1,18 +1,18 @@
 
-      // controllers/authController.js
-      const authService = require('../services/authService');
+      // controllers/adminController.js
+      const adminService = require('../services/adminService');
 
-      function authController(req, res) {
+      function adminController(req, res) {
         // Controller logic here
       }
   
       // Create
-      authController.create = async (req, res) => {
+      adminController.create = async (req, res) => {
         try {
             const data = req.body;
-            const auth = await authService.create(data);
-            if(auth){
-                res.status(200).send({status:true,message:"auth Created Successfully",data:auth,error:""});
+            const admin = await adminService.create(data);
+            if(admin){
+                res.status(200).send({status:true,message:"admin Created Successfully",data:admin,error:""});
             }
         } catch (error) {
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
@@ -20,7 +20,7 @@
       };
   
       // Read
-      authController.read = async (req, res) => {
+      adminController.read = async (req, res) => {
         try {
           const condition = req.body || {};
     const page = parseInt(req.query.page) || 1;
@@ -36,8 +36,8 @@
       query.$text = { $search: searchTerm };
     }
 
-          const data = await authService.find(query,page,limit);
-          const totalCount = await authService.countDocument(query);
+          const data = await adminService.find(query,page,limit);
+          const totalCount = await adminService.countDocument(query);
           res.status(200).send({
       data,
       page,
@@ -51,13 +51,13 @@
       };
   
       // Update
-      authController.update = async (req, res) => {
+      adminController.update = async (req, res) => {
         try {
           const id = req.params.id;
           const data = req.body;
-          const auth = await authService.update(id,data);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Updated Successfully",data:auth,error:""});
+          const admin = await adminService.update(id,data);
+          if(admin){
+            res.status(200).send({status:true,message:"admin Updated Successfully",data:admin,error:""});
           }
           
         } catch (error) {
@@ -66,12 +66,12 @@
       };
   
       // Delete
-      authController.delete = async (req, res) => {
+      adminController.delete = async (req, res) => {
         try {
           const id = req.params.id;
-          const auth = await authService.delete(id);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Deleted Successfully",data:[],error:""});
+          const admin = await adminService.delete(id);
+          if(admin){
+            res.status(200).send({status:true,message:"admin Deleted Successfully",data:[],error:""});
           }
           
         } catch (error) {
@@ -79,5 +79,5 @@
         }
       };
   
-      module.exports = authController;
+      module.exports = adminController;
     

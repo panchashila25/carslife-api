@@ -1,16 +1,16 @@
 
-    // services/authService.js
+    // services/couponsService.js
     const db = require('../models');
 
-    const {auth:Auth} = db;
+    const {coupons:Coupons} = db;
 
     exports.create = async (data) => {
       try {
-        const auth = new Auth(data);
+        const coupons = new Coupons(data);
     
-        const savedauth = await auth.save();
+        const savedcoupons = await coupons.save();
     
-        return savedauth;
+        return savedcoupons;
       } catch (error) {
         throw error;
       }
@@ -18,9 +18,9 @@
 
     exports.find = async (condition,page,limit) => {
       try {
-        const auth = await Auth.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
+        const coupons = await Coupons.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
     
-        return auth;
+        return coupons;
       } catch (error) {
         throw error;
       }
@@ -29,7 +29,7 @@
     exports.countDocument = async (condition) => {
   try {
   
-    const count = await Auth.countDocuments(condition);
+    const count = await Coupons.countDocuments(condition);
     return count;
 
   } catch (error) {
@@ -39,9 +39,9 @@
 
     exports.update = async (id,data) => {
       try {
-        const auth = await Auth.findByIdAndUpdate(id,data);
+        const coupons = await Coupons.findByIdAndUpdate(id,data);
     
-        return auth;
+        return coupons;
       } catch (error) {
         throw error;
       }
@@ -49,7 +49,7 @@
 
     exports.delete = async (id) => {
       try {
-        const auth = await Auth.findByIdAndDelete(id);
+        const coupons = await Coupons.findByIdAndDelete(id);
     
         return true;
       } catch (error) {

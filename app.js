@@ -30,4 +30,16 @@
 
     require('./routes/authRoutes')(app);
 module.exports = app;
-    
+   const authRoutes = require('./routes/authRoutes');
+app.use('/auth', authRoutes);
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin', adminRoutes);
+const userRoutes = require('./routes/userRoutes');
+app.use('/user', userRoutes);
+const driverRoutes = require('./routes/driverRoutes');
+app.use('/driver', driverRoutes);
+const bookingsRoutes = require('./routes/bookingsRoutes');
+app.use('/bookings', bookingsRoutes);
+const couponsRoutes = require('./routes/couponsRoutes');
+app.use('/coupons', couponsRoutes);
+ 

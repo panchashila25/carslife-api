@@ -1,18 +1,18 @@
 
-      // controllers/authController.js
-      const authService = require('../services/authService');
+      // controllers/userController.js
+      const userService = require('../services/userService');
 
-      function authController(req, res) {
+      function userController(req, res) {
         // Controller logic here
       }
   
       // Create
-      authController.create = async (req, res) => {
+      userController.create = async (req, res) => {
         try {
             const data = req.body;
-            const auth = await authService.create(data);
-            if(auth){
-                res.status(200).send({status:true,message:"auth Created Successfully",data:auth,error:""});
+            const user = await userService.create(data);
+            if(user){
+                res.status(200).send({status:true,message:"user Created Successfully",data:user,error:""});
             }
         } catch (error) {
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
@@ -20,7 +20,7 @@
       };
   
       // Read
-      authController.read = async (req, res) => {
+      userController.read = async (req, res) => {
         try {
           const condition = req.body || {};
     const page = parseInt(req.query.page) || 1;
@@ -36,8 +36,8 @@
       query.$text = { $search: searchTerm };
     }
 
-          const data = await authService.find(query,page,limit);
-          const totalCount = await authService.countDocument(query);
+          const data = await userService.find(query,page,limit);
+          const totalCount = await userService.countDocument(query);
           res.status(200).send({
       data,
       page,
@@ -51,13 +51,13 @@
       };
   
       // Update
-      authController.update = async (req, res) => {
+      userController.update = async (req, res) => {
         try {
           const id = req.params.id;
           const data = req.body;
-          const auth = await authService.update(id,data);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Updated Successfully",data:auth,error:""});
+          const user = await userService.update(id,data);
+          if(user){
+            res.status(200).send({status:true,message:"user Updated Successfully",data:user,error:""});
           }
           
         } catch (error) {
@@ -66,12 +66,12 @@
       };
   
       // Delete
-      authController.delete = async (req, res) => {
+      userController.delete = async (req, res) => {
         try {
           const id = req.params.id;
-          const auth = await authService.delete(id);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Deleted Successfully",data:[],error:""});
+          const user = await userService.delete(id);
+          if(user){
+            res.status(200).send({status:true,message:"user Deleted Successfully",data:[],error:""});
           }
           
         } catch (error) {
@@ -79,5 +79,5 @@
         }
       };
   
-      module.exports = authController;
+      module.exports = userController;
     

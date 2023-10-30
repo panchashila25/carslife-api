@@ -1,16 +1,16 @@
 
-    // services/authService.js
+    // services/userService.js
     const db = require('../models');
 
-    const {auth:Auth} = db;
+    const {user:User} = db;
 
     exports.create = async (data) => {
       try {
-        const auth = new Auth(data);
+        const user = new User(data);
     
-        const savedauth = await auth.save();
+        const saveduser = await user.save();
     
-        return savedauth;
+        return saveduser;
       } catch (error) {
         throw error;
       }
@@ -18,9 +18,9 @@
 
     exports.find = async (condition,page,limit) => {
       try {
-        const auth = await Auth.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
+        const user = await User.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
     
-        return auth;
+        return user;
       } catch (error) {
         throw error;
       }
@@ -29,7 +29,7 @@
     exports.countDocument = async (condition) => {
   try {
   
-    const count = await Auth.countDocuments(condition);
+    const count = await User.countDocuments(condition);
     return count;
 
   } catch (error) {
@@ -39,9 +39,9 @@
 
     exports.update = async (id,data) => {
       try {
-        const auth = await Auth.findByIdAndUpdate(id,data);
+        const user = await User.findByIdAndUpdate(id,data);
     
-        return auth;
+        return user;
       } catch (error) {
         throw error;
       }
@@ -49,7 +49,7 @@
 
     exports.delete = async (id) => {
       try {
-        const auth = await Auth.findByIdAndDelete(id);
+        const user = await User.findByIdAndDelete(id);
     
         return true;
       } catch (error) {

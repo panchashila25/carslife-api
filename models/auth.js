@@ -6,7 +6,7 @@
     const Auth = mongoose.model(
       "Auth",
       new mongoose.Schema({
-
+       
         
       }, {
         timestamps: true

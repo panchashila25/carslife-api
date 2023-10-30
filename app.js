@@ -28,9 +28,7 @@
         process.exit();
     });
 
-    require('./routes/authRoutes')(app);
-module.exports = app;
-   const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 app.use('/auth', authRoutes);
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/admin', adminRoutes);
@@ -43,3 +41,4 @@ app.use('/bookings', bookingsRoutes);
 const couponsRoutes = require('./routes/couponsRoutes');
 app.use('/coupons', couponsRoutes);
  
+module.exports = app;

@@ -8,7 +8,7 @@
       new mongoose.Schema({
         profile:{
           type:String,
-          required:true
+    
         },
         name:{
           type:String,
@@ -34,35 +34,36 @@
           type:String,
           required:true
         },
+        licenseno:{
+          type:String,
+          required:true
+        },
         personalDocument:[{
-          licenseno:{
+          doc:{
             type:String,
             required:true
           },
-          licenseDoc:{
-            type:String,
-            required:true
-          },
-          address:{
-            type:String,
-            required:true
-          },
-          govId:{
-            type:String,
-            required:true
-          }
         }
         ],
+        govId:{
+          type:String,
+          required:true
+        },
+        address:{
+          type:String,
+          required:true
+        },
+        carName:{
+          type:String,
+          required:true
+        },
+        carNo:{
+          type:String,
+          required:true
+        },
         carDocument:[{
-          carName:{
-            type:String,
-            required:true
-          },
-          carNo:{
-            type:String,
-            required:true
-          },
-          carDoc:{
+          
+          doc:{
             type:String,
             required:true
           }

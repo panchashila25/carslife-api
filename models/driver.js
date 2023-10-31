@@ -38,13 +38,10 @@
           type:String,
           required:true
         },
-        personalDocument:[{
-          doc:{
+        personalDocument:{
             type:String,
             required:true
-          },
-        }
-        ],
+        },
         govId:{
           type:String,
           required:true
@@ -61,13 +58,10 @@
           type:String,
           required:true
         },
-        carDocument:[{
-          
-          doc:{
+        carDocument:{
             type:String,
             required:true
           }
-        }]
       }, {
         timestamps: true
       })

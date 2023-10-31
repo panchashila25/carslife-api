@@ -40,5 +40,7 @@ const bookingsRoutes = require('./routes/bookingsRoutes');
 app.use('/bookings', bookingsRoutes);
 const couponsRoutes = require('./routes/couponsRoutes');
 app.use('/coupons', couponsRoutes);
+const commanRoutes = require('./routes/commanRoutes');
+app.use('/comman', commanRoutes);
  
 module.exports = app;

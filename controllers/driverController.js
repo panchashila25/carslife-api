@@ -56,11 +56,13 @@
           const id = req.params.id;
           const data = req.body;
           const driver = await driverService.update(id,data);
+          console.log(driver)
           if(driver){
             res.status(200).send({status:true,message:"driver Updated Successfully",data:driver,error:""});
           }
           
         } catch (error) {
+    
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
         }
       };

@@ -19,8 +19,17 @@
           required:true
         },
         
+        fromDate:{
+          type:Date,
+          required:true
+        },
+        toDate:{
+          type:Date,
+          required:true
         
-      }, {
+      }
+    },
+       {
         timestamps: true
       })
     );

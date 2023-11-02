@@ -6,11 +6,20 @@
     const Driver = mongoose.model(
       "Driver",
       new mongoose.Schema({
-        profile:{
-          type:String,
-    
-        },
+  
         name:{
+          type:String,
+          required:true
+        },
+        gender:{
+          type:String,
+          required:true
+        },
+        dob:{
+          type:String,
+          required:true
+        },
+        age:{
           type:String,
           required:true
         },
@@ -22,27 +31,11 @@
           type:String,
           required:true
         },
-        password:{
-          type:String,
-          required:true
-        },
-        carCategory:{
-          type:String,
-          required:true
-        },
-        age:{
-          type:String,
-          required:true
-        },
         licenseno:{
           type:String,
           required:true
         },
-        personalDocument:{
-            type:String,
-            required:true
-        },
-        govId:{
+        aadharCardNo:{
           type:String,
           required:true
         },
@@ -50,7 +43,23 @@
           type:String,
           required:true
         },
-        carName:{
+        state:{
+          type:String,
+          required:true
+        },
+        city:{
+          type:String,
+          required:true
+        },
+        policeverifyDoc:{
+          type:String,
+          required:true
+        },
+        brandName:{
+          type:String,
+          required:true
+        },
+        modelName:{
           type:String,
           required:true
         },
@@ -61,7 +70,15 @@
         carDocument:{
             type:String,
             required:true
-          }
+          },
+          purchesYear:{
+            type:String,
+            required:true
+          },
+          photo:{
+            type:String,
+            required:true
+          },
       }, {
         timestamps: true
       })

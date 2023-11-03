@@ -8,6 +8,7 @@
   
       router.post("/upload",commanController.uploadFile);
   router.get("/retrieve/:file",commanController.retrieveFile);
+  router.get("/searchPlaces",commanController.searchPlaces);
   
       module.exports = router;
     

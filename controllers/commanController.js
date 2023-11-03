@@ -1,6 +1,7 @@
 
 const fs = require('fs');
 const path = require('path')
+const request = require('request');
 const formidable = require('formidable');
       function commanController(req, res) {
         // Controller logic here
@@ -34,6 +35,21 @@ const formidable = require('formidable');
       
       };
   
+      commanController.searchPlaces = async (req, res) => {
+        var options = {
+            'method': 'GET',
+            'url': 'http://api.positionstack.com/v1/forward?access_key=1f6a2d9e59262ac47433be709bba0519&query='+req.query.search,
+            'headers': {}
+        };
+        request(options, function (error, response) {
+                res.status(200).send({
+                    status:"success",
+                    message : "Successfully Uploaded",
+                    data: JSON.parse(response.body)
+                });
+        });
+      
+      };
       commanController.retrieveFile = (req, res, next) => {
         try{
             res.status(200).sendFile(path.join(__dirname, '../uploads/'+req.params.file));

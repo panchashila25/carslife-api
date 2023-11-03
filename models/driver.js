@@ -14,10 +14,13 @@
         gender:{
           type:String,
           required:true
+      
         },
         dob:{
           type:String,
           required:true
+          
+          
         },
         age:{
           type:String,
@@ -35,6 +38,10 @@
           type:String,
           required:true
         },
+        licenseDoc:{
+          type:String,
+          required:true
+        },
         aadharCardNo:{
           type:String,
           required:true
@@ -42,8 +49,14 @@
         address:{
           type:String,
           required:true
+          
         },
         state:{
+          type:String,
+          required:true
+          
+        },
+        pincode:{
           type:String,
           required:true
         },
@@ -53,7 +66,8 @@
         },
         policeverifyDoc:{
           type:String,
-          required:true
+          required:false
+          
         },
         brandName:{
           type:String,
@@ -66,18 +80,25 @@
         carNo:{
           type:String,
           required:true
+          
         },
         carDocument:{
             type:String,
             required:true
+            
           },
           purchesYear:{
             type:String,
             required:true
+            
+            
           },
           photo:{
             type:String,
             required:true
+          
+
+           
           },
       }, {
         timestamps: true

@@ -2,7 +2,7 @@
     // services/authService.js
     const db = require('../models');
 
-    const {auth:Auth} = db;
+    const {user:User} = db;
 
     exports.register = async (userData) => {
       try {
@@ -16,9 +16,9 @@
       }
     };
     
-    exports.authenticate = async (email) => {
+    exports.authenticate = async (mobile) => {
       try {
-        const user = await User.findOne({email: email});
+        const user = await User.findOne({mobile: mobile});
         console.log(user);
         if(user)
           return user;

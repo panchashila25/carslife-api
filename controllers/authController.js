@@ -1,10 +1,18 @@
 
       // controllers/authController.js
-      const authService = require('../services/authService');
+      const { user } = require('../models');
+const User = require('../models/user');
+const authService = require('../services/authService');
+
+    
 
       function authController(req, res) {
         // Controller logic here
       }
+
+      // otp validation
+     const staticOtp= 1234;
+    
   // Create
 authController.register = async (req, res) => {
   try {
@@ -21,34 +29,52 @@ authController.register = async (req, res) => {
   }
 };
 
+// sendotp
+authController.sendOTP = async (req, res) => {
+  if (req.body.mobile == "" || req.body.mobile == undefined) {
+    return res.status(500).send({
+      accessToken: null,
+      message: "Missing Data",
+    });
+  }
+
+
+  let user = await User.countDocuments({mobile:req.body.mobile,role:"user"});
+  if(user != 1){
+    let newUser = new User(req.body);
+    let savedUser = await newUser.save();
+  }
+
+
+  const otp = 1234;
+  res.status(200).send({
+    status: "success",
+    message: "OTP Sent Successfully",
+    data: {
+      otp: otp
+    }
+  });
+}
+
 // Read
 authController.authenticate = async (req, res) => {
   try {
-      const {email,password} = req.body;
-      const user = await authService.authenticate(email);
-      console.log(password)
+      const {mobile,otp} = req.body;
+      const user = await authService.authenticate(mobile,otp);
+
       console.log(user)
-      let passwordIsValid = bcrypt.compareSync(
-          password,
-          user.password
-        );
-      console.log(passwordIsValid);
-      if (!passwordIsValid) {
+     console.log(otp)
+     console.log(req.body)
+  
+      if (staticOtp!=otp) {
           return res.status(500).send({
             error:{
               accessToken: null,
-              message: "Invalid Email or Password!",
+              message: "Invalid OTP",
             }
           });
       }
 
-      let token = jwt.sign({
-          id: user.id
-      }, process.env.JWTSecret, {
-          expiresIn: process.env.JWTExpiration,
-      });
-      
-      user.token = token;
       res.status(200).send({status:true,message:"User Logged in Successfully",data:user,error:""});
   } catch (error) {
       console.log(error)

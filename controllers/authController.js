@@ -5,79 +5,56 @@
       function authController(req, res) {
         // Controller logic here
       }
-  
-      // Create
-      authController.create = async (req, res) => {
-        try {
-            const data = req.body;
-            const auth = await authService.create(data);
-            if(auth){
-                res.status(200).send({status:true,message:"auth Created Successfully",data:auth,error:""});
+  // Create
+authController.register = async (req, res) => {
+  try {
+      const userData = req.body;
+      userData.password = bcrypt.hashSync(req.body.password,8);
+      const user = await authService.register(userData);
+      if(user){
+          console.log(error)
+          res.status(200).send({status:true,message:"User Registered Successfully",data:user,error:""});
+      }
+  } catch (error) {
+      console.log(error)
+      res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
+  }
+};
+
+// Read
+authController.authenticate = async (req, res) => {
+  try {
+      const {email,password} = req.body;
+      const user = await authService.authenticate(email);
+      console.log(password)
+      console.log(user)
+      let passwordIsValid = bcrypt.compareSync(
+          password,
+          user.password
+        );
+      console.log(passwordIsValid);
+      if (!passwordIsValid) {
+          return res.status(500).send({
+            error:{
+              accessToken: null,
+              message: "Invalid Email or Password!",
             }
-        } catch (error) {
-            res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
-        }
-      };
-  
-      // Read
-      authController.read = async (req, res) => {
-        try {
-          const condition = req.body || {};
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 25;
-    const searchTerm = req.query.searchTerm;
-    let query = {};
+          });
+      }
 
-    if (condition) {
-      query = condition;
-    }
+      let token = jwt.sign({
+          id: user.id
+      }, process.env.JWTSecret, {
+          expiresIn: process.env.JWTExpiration,
+      });
+      
+      user.token = token;
+      res.status(200).send({status:true,message:"User Logged in Successfully",data:user,error:""});
+  } catch (error) {
+      console.log(error)
+      res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
+  }
+};
 
-    if (searchTerm) {
-      query.$text = { $search: searchTerm };
-    }
 
-          const data = await authService.find(query,page,limit);
-          const totalCount = await authService.countDocument(query);
-          res.status(200).send({
-      data,
-      page,
-      totalPages: Math.ceil(totalCount / limit),
-      totalItems: totalCount,
-    });
-          
-        } catch (error) {
-            res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
-        }
-      };
-  
-      // Update
-      authController.update = async (req, res) => {
-        try {
-          const id = req.params.id;
-          const data = req.body;
-          const auth = await authService.update(id,data);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Updated Successfully",data:auth,error:""});
-          }
-          
-        } catch (error) {
-            res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
-        }
-      };
-  
-      // Delete
-      authController.delete = async (req, res) => {
-        try {
-          const id = req.params.id;
-          const auth = await authService.delete(id);
-          if(auth){
-            res.status(200).send({status:true,message:"auth Deleted Successfully",data:[],error:""});
-          }
-          
-        } catch (error) {
-            res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
-        }
-      };
-  
-      module.exports = authController;
-    
+module.exports = authController;

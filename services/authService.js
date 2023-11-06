@@ -4,58 +4,34 @@
 
     const {auth:Auth} = db;
 
-    exports.create = async (data) => {
+    exports.register = async (userData) => {
       try {
-        const auth = new Auth(data);
+        const newUser = new User(userData);
     
-        const savedauth = await auth.save();
+        const savedUser = await newUser.save();
     
-        return savedauth;
+        return savedUser;
       } catch (error) {
         throw error;
       }
     };
-
-    exports.find = async (condition,page,limit) => {
-      try {
-        const auth = await Auth.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
     
-        return auth;
+    exports.authenticate = async (email) => {
+      try {
+        const user = await User.findOne({email: email});
+        console.log(user);
+        if(user)
+          return user;
+        else
+          return false;
+        
+    
       } catch (error) {
+        console.log(error)
         throw error;
       }
     };
-
-    exports.countDocument = async (condition) => {
-  try {
-  
-    const count = await Auth.countDocuments(condition);
-    return count;
-
-  } catch (error) {
-    throw error;
-  }
-};
-
-    exports.update = async (id,data) => {
-      try {
-        const auth = await Auth.findByIdAndUpdate(id,data);
     
-        return auth;
-      } catch (error) {
-        throw error;
-      }
-    };
-
-    exports.delete = async (id) => {
-      try {
-        const auth = await Auth.findByIdAndDelete(id);
     
-        return true;
-      } catch (error) {
-        throw error;
-      }
-    };
-
     
   

@@ -6,42 +6,34 @@ const User = mongoose.model(
   "User",
   new mongoose.Schema(
     {
-      profile: {
-        type: String,
-      },
       name: {
         type: String,
-        required: true,
+  
       },
       mobile: {
         type: String,
-        required: true,
+        
       },
-      email: {
-        type: String,
-      },
-       address: {
-        type: String,
-      },
-      govId: {
+      pickupLocation: {
         type: String,
         required: true,
       },
-      pickUp: {
+      dropLocation: {
         type: String,
         required: true,
       },
-      drop: {
-        type: String,
+      pickupdate:{
+        type:String,
         required: true,
       },
-      location:{
+      dropDate:{
         type:String,
         required:true,
       },
+      
       bookings:{
         type:String,
-        required:true,
+        
       }
     }
     ,{

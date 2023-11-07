@@ -90,16 +90,23 @@
           purchesYear:{
             type:String,
             required:true
-            
-            
+          },
+          packagePrice:{
+            type:Number,
+            required:true
+          },
+          packageKm:{
+            type:Number,
+            required:true
+          },
+          ratePerKm:{
+            type:Number,
+            required:true
           },
           photo:{
             type:String,
             required:true
-          
-
-           
-          },
+          }
       }, {
         timestamps: true
       })

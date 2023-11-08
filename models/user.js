@@ -45,6 +45,18 @@ const User = mongoose.model(
         type:String,
         
       },
+      pickuplatitude:{
+        type:String
+      },
+      pickuplongitude:{
+        type:String
+      },
+      droplatitude:{
+        type:String
+      },
+      droplongitude:{
+        type:String
+      },
     }
     ,{
       timestamps: true,

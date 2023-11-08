@@ -91,6 +91,7 @@
             type:Date,
             required:true
           },
+        
           photo:{
             type:String,
             required:true

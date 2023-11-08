@@ -11,5 +11,6 @@ db.user = require('./user');
 db.driver = require('./driver');
 db.bookings = require('./bookings');
 db.coupons = require('./coupons');
+db.transaction = require('./transaction');
 module.exports = db;
     

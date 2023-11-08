@@ -20,10 +20,14 @@ const User = mongoose.model(
       
       role:{
         type:String,
-        enum:['user','admin'],
+        enum:['user','admin','driver'],
         default:'user'
       },
+      walletBalance:{
+        type:String,
+        default:0
 
+      },
       pickupLocation: {
         type: String,
       },

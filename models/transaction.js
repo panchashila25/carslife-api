@@ -7,21 +7,21 @@
       "Transaction",
       new mongoose.Schema({
         balance:{
-          type:String,
+          type:Number,
           required:true
         },
         transactionType:{
           type:String,
           enum:['credit','debit'],
-          required: true
+          // required: true
         },
-        date:{
-          type:Date,
-          required:true
+        discription:{
+          type:String
         },
-        user:{
+        driver:{
          type:mongoose.Schema.Types.ObjectId,
-         ref:'User'
+         ref:'Driver',
+         required:true
         }
       }, {
         timestamps: true

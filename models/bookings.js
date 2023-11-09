@@ -28,13 +28,13 @@
           type:Date,
           type:String
         },
-        location:{
+        pickupLocation:{
           type:String,
-          required:true
+  
         },
-        dropAddress:{
+        dropLocation:{
           type:String,
-          required:true
+        
         },
         bookingId:{
           type:String,

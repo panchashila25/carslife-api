@@ -56,6 +56,62 @@ authController.sendOTP = async (req, res) => {
   });
 }
 
+
+
+
+
+authController.sendOTPs = async (req, res) => {
+  if (req.body.mobile == "" || req.body.mobile == undefined) {
+    return res.status(500).send({
+      accessToken: null,
+      message: "Missing Data",
+    });
+  }
+
+
+  let user = await User.countDocuments({mobile:req.body.mobile,role:"driver"});
+
+  if(user==0){
+    return res.status(500).send({
+      accessToken: null,
+      message: "User Not Found",
+    });
+  }
+
+  let min = 1000; // Minimum value for a four-digit number
+ let max = 9999; // Maximum value for a four-digit number
+   let otp = Math.floor(Math.random() * (max - min + 1)) + min;
+  console.log(otp)
+  res.status(200).send({
+    status: "success",
+    message: "OTP Sent Successfully",
+    data: {
+      otp: otp
+    }
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Read
 authController.authenticate = async (req, res) => {
   try {
@@ -65,16 +121,6 @@ authController.authenticate = async (req, res) => {
       console.log(user)
      console.log(otp)
      console.log(req.body)
-  
-      if (staticOtp!=otp) {
-          return res.status(500).send({
-            error:{
-              accessToken: null,
-              message: "Invalid OTP",
-            }
-          });
-      }
-
       res.status(200).send({status:true,message:"User Logged in Successfully",data:user,error:""});
   } catch (error) {
       console.log(error)

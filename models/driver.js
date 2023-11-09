@@ -43,7 +43,7 @@
           required:true
         },
         aadharCardNo:{
-          type:String,
+          type:Number,
           required:true
         },
         address:{
@@ -57,7 +57,7 @@
           
         },
         pincode:{
-          type:String,
+          type:Number,
           required:true
         },
         city:{
@@ -88,14 +88,15 @@
             
           },
           purchesYear:{
+            type:Date,
+            required:true
+          },
+        
+          photo:{
             type:String,
             required:true
           },
-          packagePrice:{
-            type:Number,
-            required:true
-          },
-          packageKm:{
+          PackageKm:{
             type:Number,
             required:true
           },
@@ -103,9 +104,13 @@
             type:Number,
             required:true
           },
-          photo:{
-            type:String,
+          packagePrice:{
+            type:Number,
             required:true
+          },
+          userId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"User"
           }
       }, {
         timestamps: true

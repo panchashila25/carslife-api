@@ -2,10 +2,14 @@
     // services/driverService.js
     const db = require('../models');
 
-    const {driver:Driver} = db;
+    const {driver:Driver,user:User} = db;
 
     exports.create = async (data) => {
       try {
+        data.role = "driver";
+        const user =new User(data)
+        const saveduser = await user.save()
+        data.userId = saveduser._id;
         const driver = new Driver(data);
     
         const saveddriver = await driver.save();

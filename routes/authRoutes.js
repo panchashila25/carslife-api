@@ -14,6 +14,8 @@
       
       router.post('/sendOTP', authController.sendOTP);
 
+      router.post('/sendOTPs', authController.sendOTPs);
+
       module.exports = router;
     
     

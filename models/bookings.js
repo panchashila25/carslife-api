@@ -26,7 +26,7 @@
         },
         toDate:{
           type:Date,
-          type:String
+      
         },
         pickupLocation:{
           type:String,
@@ -36,9 +36,14 @@
           type:String,
         
         },
+        status:{
+          type:String,
+          default:"approve",
+          enum:["pending","approve"]
+        },
         bookingId:{
           type:String,
-          required:true
+        
         }
         
 

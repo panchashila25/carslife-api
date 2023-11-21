@@ -98,7 +98,7 @@
           },
           PackageKm:{
             type:Number,
-            required:true
+            
           },
           ratePerKm:{
             type:Number,

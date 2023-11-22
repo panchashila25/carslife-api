@@ -1,6 +1,7 @@
 
       // controllers/bookingsController.js
-      const bookingsService = require('../services/bookingsService');
+      const Driver = require('../models/driver');
+const bookingsService = require('../services/bookingsService');
 
       function bookingsController(req, res) {
         // Controller logic here
@@ -30,6 +31,10 @@
 
     if (condition) {
       query = condition;
+      if(query.driver!=""){
+        const data=await Driver.findOne({userId:CountQueuingStrategy.driver})
+        query.driver=data._id;
+      }
     }
 
     if (searchTerm) {

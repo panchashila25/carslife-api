@@ -36,10 +36,13 @@
           type:String,
         
         },
+        totalFare:{
+          type:String
+        },
         status:{
           type:String,
-          default:"approve",
-          enum:["pending","approve"]
+          enum:["pending","approve"],
+          default:"pending"
         },
         bookingId:{
           type:String,

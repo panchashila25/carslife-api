@@ -40,7 +40,6 @@
     exports.update = async (id,data) => {
       try {
         const bookings = await Bookings.findByIdAndUpdate(id,data);
-    
         return bookings;
       } catch (error) {
         throw error;

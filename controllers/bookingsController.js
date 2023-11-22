@@ -28,7 +28,7 @@ const bookingsService = require('../services/bookingsService');
     const limit = parseInt(req.query.limit) || 25;
     const searchTerm = req.query.searchTerm;
     let query = {};
-
+          console.log(req.body)
     if (condition) {
       query = condition;
       if(query.driver!=""){
@@ -40,7 +40,6 @@ const bookingsService = require('../services/bookingsService');
     if (searchTerm) {
       query.$text = { $search: searchTerm };
     }
-
           const data = await bookingsService.find(query,page,limit);
           const totalCount = await bookingsService.countDocument(query);
           res.status(200).send({
@@ -51,6 +50,7 @@ const bookingsService = require('../services/bookingsService');
     });
           
         } catch (error) {
+          console.log(error)
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
         }
       };
@@ -60,6 +60,7 @@ const bookingsService = require('../services/bookingsService');
         try {
           const id = req.params.id;
           const data = req.body;
+          console.log(req.body)
           const bookings = await bookingsService.update(id,data);
           if(bookings){
             res.status(200).send({status:true,message:"bookings Updated Successfully",data:bookings,error:""});

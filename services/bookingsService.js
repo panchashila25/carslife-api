@@ -18,7 +18,7 @@
 
     exports.find = async (condition,page,limit) => {
       try {
-        const bookings = await Bookings.find(condition).populate('user').skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
+        const bookings = await Bookings.find(condition).populate("driver").populate("user").skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
     
         return bookings;
       } catch (error) {

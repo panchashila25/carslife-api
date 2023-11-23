@@ -44,7 +44,7 @@
     exports.update = async (id,data) => {
       try {
         const driver = await Driver.findByIdAndUpdate(id,data);
-    
+        
         return driver;
       } catch (error) {
         throw error;

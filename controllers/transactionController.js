@@ -1,6 +1,7 @@
 
       // controllers/transactionController.js
-      const transactionService = require('../services/transactionService');
+      const { driver } = require('../models');
+const transactionService = require('../services/transactionService');
 
       function transactionController(req, res) {
         // Controller logic here
@@ -11,6 +12,7 @@
         try {
             const data = req.body;
             const transaction = await transactionService.create(data);
+          
             if(transaction){
                 res.status(200).send({status:true,message:"transaction Created Successfully",data:transaction,error:""});
             }
@@ -36,7 +38,7 @@
       query.$text = { $search: searchTerm };
     }
 
-          const data = await transactionService.find(query,page,limit);
+          const data = await transactionService.find();
           const totalCount = await transactionService.countDocument(query);
           res.status(200).send({
       data,

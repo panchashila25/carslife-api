@@ -98,7 +98,7 @@
           },
           PackageKm:{
             type:Number,
-            required:true
+            
           },
           ratePerKm:{
             type:Number,
@@ -111,7 +111,7 @@
           userId:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"User"
-          }
+          },
       }, {
         timestamps: true
       })

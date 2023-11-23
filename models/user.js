@@ -24,7 +24,7 @@ const User = mongoose.model(
         default:'user'
       },
       walletBalance:{
-        type:String,
+        type:Number,
         default:0
 
       },

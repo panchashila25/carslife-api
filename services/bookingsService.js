@@ -18,7 +18,7 @@
 
     exports.find = async (condition,page,limit) => {
       try {
-        const bookings = await Bookings.find(condition).skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
+        const bookings = await Bookings.find(condition).populate("driver").populate("user").skip((page - 1) * limit).limit(limit).sort({createdAt:-1}).exec();;
     
         return bookings;
       } catch (error) {
@@ -40,7 +40,6 @@
     exports.update = async (id,data) => {
       try {
         const bookings = await Bookings.findByIdAndUpdate(id,data);
-    
         return bookings;
       } catch (error) {
         throw error;

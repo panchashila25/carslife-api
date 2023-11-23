@@ -80,6 +80,19 @@
             res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
         }
       };
+
+      driverController.countDocument=async (req,res)=>{
+        try{
+          const driver=await driverService.countDocument()
+          if(driver){
+            res.status(200).send({status:true,message:"driver Deleted Successfully",data:[],error:""});
+          }
+        }
+        catch(error){
+          res.status(500).send({status:false,message:"Internal Server Error",data:[],error:error});
+        }
+        
+      }
   
       module.exports = driverController;
     

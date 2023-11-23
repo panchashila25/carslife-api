@@ -6,9 +6,9 @@
     const Bookings = mongoose.model(
       "Bookings",
       new mongoose.Schema({
-        coupons:{
+        location:{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Coupons",
+            ref: "Location",
           },
         user:{
             type: mongoose.Schema.Types.ObjectId,

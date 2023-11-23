@@ -17,6 +17,10 @@
   
       // DELETE route
       router.delete('/:id', driverController.delete);
+
+      router.get('/count',driverController.countDocument);
+      
+    
   
       module.exports = router;
     
